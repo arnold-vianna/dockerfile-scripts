@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.3
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: PLACE_ROOT_PASS_HERE
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: PLACE_USERNAME_HERE
+      MYSQL_PASSWORD: PLACE_PASS_HERE
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+    networks:
+      - mysqlnet
+
+  workbench:
+    image: lscr.io/linuxserver/mysql-workbench:latest
+    container_name: mysql-workbench
+    restart: unless-stopped
+    environment:
+      PUID: 1000   # Replace with your user ID
+      PGID: 1000   # Replace with your group ID
+      TZ: America/Sao_Paulo
+    ports:
+      - "3000:3000"  # noVNC (web UI)
+      - "3001:3001"  # VNC (optional)
+    networks:
+      - mysqlnet
+    depends_on:
+      - mysql
+    volumes:
+      - workbench_data:/config
+
+volumes:
+  mysqldata:
+  workbench_data:
+
+networks:
+  mysqlnet:
