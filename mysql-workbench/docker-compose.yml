@@ -6,10 +6,17 @@ services:
     container_name: mysql
     restart: unless-stopped
     environment:
+<<<<<<< HEAD
       MYSQL_ROOT_PASSWORD: PLACE_ROOT_PASS_HERE
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: PLACE_USERNAME_HERE
       MYSQL_PASSWORD: PLACE_PASS_HERE
+=======
+      MYSQL_ROOT_PASSWORD: PLACE-YOUR-PASSWORD-HERE
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: PLACE-YOUR-USERNAME-HERE
+      MYSQL_PASSWORD: w&QEm~*^F9A*k(UT7Emv+o-zd6TNz
+>>>>>>> origin/main
     ports:
       - "3306:3306"
     volumes:
